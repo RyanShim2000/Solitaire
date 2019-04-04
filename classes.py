@@ -13,7 +13,7 @@ class Card:
 		self.value_translate = [1,2,3,4,5,6,7,8,9,10,'jack','queen','king']
 		self.suit_translate = ['diamond','club','heart','spade']
 
-		return "{}_{}.png".format(self.value_translate[self.value],self.suit_translate[self.suit])
+		return "cards/{}_{}.png".format(self.value_translate[self.value],self.suit_translate[self.suit])
 
 class Deck(Card):
 	""" A standard deck of 52 playing cards"""
@@ -80,12 +80,12 @@ def card_image(card_name):
     for s in suits:
 
         for i in range(1,11):
-            name = '{}_{}.png'.format(i,s)
+            name = 'cards/{}_{}.png'.format(i,s)
             image = pygame.image.load( name)
             image_dic[name] = image
 
         for v in values_face:
-            name = '{}_{}.png'.format(v,s)
+            name = 'cards/{}_{}.png'.format(v,s)
             image = pygame.image.load( name)
             image_dic[name] = image
             

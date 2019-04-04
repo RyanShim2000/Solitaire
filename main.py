@@ -50,14 +50,14 @@ y = 30
 def draw(pile_lst,screen_lst,after_deck,cover,final_deck):
 
     start=0
-    imageK = pygame.image.load('back_suit.png')
+    imageK = pygame.image.load('cards/back_suit.png')
     pygame.draw.rect(gameScreen,black,[0,0,1000,600])
 
     for c in range(7):
         if c>0:
             for i in range(len(pile_lst[c])-1):
                     i-=1
-                    image = pygame.image.load('back_suit.png')
+                    image = pygame.image.load('cards/back_suit.png')
                     gameScreen.blit(image,(pile_lst[c][i+1][1],pile_lst[c][i+1][2]))
 
         for k in range(len(screen_lst[c])):
@@ -154,11 +154,12 @@ def is_second_clicked(screen_lst,clicked_lst,pile_lst,delete_check,final_deck):
 
     if ax<850+74 and ax>850 and len(clicked_lst) == 1:
         for j in range(4):
+            print(clicked_lst[0][0][0])
             if ay<75+107+(j*120) and ay>75+(j*120):
                 if len(final_deck[j])>0 and suit_check(clicked_lst[0][0],final_deck[j][0][0]) == True and down_order(clicked_lst[0][0],final_deck[j][-1][0])==True:
                     delete_check.append('a')
                     final_deck[j].append([clicked_lst[0][0],850,75+(j*120)])    
-                if len(final_deck[j])==0 and clicked_lst[0][0][0]=='1':
+                if len(final_deck[j])==0 and clicked_lst[0][0][6]=='1':
                     delete_check.append('a')
                     final_deck[j].append([clicked_lst[0][0],850,75+(j*120)])  
 
@@ -258,8 +259,8 @@ def down_order(c2,c1):
     pos1 = c1.index('_')
     pos2 = c2.index('_')
 
-    check1 = num.index(c1[:pos1])
-    check2 = num.index(c2[:pos2])
+    check1 = num.index(c1[6:pos1])
+    check2 = num.index(c2[6:pos2])
 
     if check1+1 ==check2:
         return True
@@ -270,7 +271,7 @@ def is_king(clicked_lst):
 
     name= clicked_lst[0][0].index('_')
 
-    if clicked_lst[0][0][:name]== 'king':
+    if clicked_lst[0][0][:name]== 'cards/king':
         return True
     else:
         return False
